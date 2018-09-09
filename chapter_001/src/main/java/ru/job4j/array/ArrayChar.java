@@ -3,10 +3,10 @@ package ru.job4j.array;
  * Слово начинается с...
  */
 public class ArrayChar {
-    private char[] data; // поле с массивом.
+    private char[] data;
 
     public ArrayChar(String line) {
-        this.data = line.toCharArray(); // переводим строку в массив символов.
+        this.data = line.toCharArray();
     }
     /**
      * Проверяет. что слово начинается с префикса.
@@ -19,6 +19,7 @@ public class ArrayChar {
         for (int index = 0; index != value.length; index++) {
             if (value[index] != this.data[index]) {
                 result = false;
+                break;
             }
         }
         return result;
