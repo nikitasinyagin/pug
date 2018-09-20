@@ -1,11 +1,8 @@
 package ru.job4j.max;
-
 /**
  * Класс определяет максимальное число.
  */
-
 public class Max {
-
     /**
      * Метод возвращает наибольшее число из двух.
      * @param first первое число.
@@ -16,7 +13,6 @@ public class Max {
 
         return first > second ? first : second;
     }
-
     /**
      * Метод возвращает наибольшее число из трех.
      * @param first первое число.
