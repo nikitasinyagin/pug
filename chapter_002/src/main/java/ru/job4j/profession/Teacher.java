@@ -1,8 +1,7 @@
 package ru.job4j.profession;
 
-public class Teacher {
-    Profession teacher = new Profession();
-    public void teach (){
+public class Teacher extends Profession {
+    public void teach (Student student){
 
     }
 }
