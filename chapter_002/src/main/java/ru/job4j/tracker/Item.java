@@ -7,12 +7,11 @@ public class Item {
     public String description;
     public Long create;
 
-    public Item(String name, String description, Long create) {
+    public Item(String name, String description){
         this.name = name;
         this.description = description;
-        this.create = create;
+        this.create = System.currentTimeMillis();
     }
-
     public String getName() {
         return this.name;
     }
@@ -24,5 +23,8 @@ public class Item {
     }
     public void setId(String id) {
         this.id = id;
+    }
+    public Long getCreate(){
+        return this.create;
     }
 }
