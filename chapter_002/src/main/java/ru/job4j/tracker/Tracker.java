@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Tracker {
@@ -7,17 +8,14 @@ public class Tracker {
      * Массив для хранение заявок.
      */
     private final Item[] items = new Item[100];
-
     /**
      * Указатель ячейки для новой заявки.
      */
     private int position = 0;
-
     /**
      * Генерация случайного числа для заявки
      */
     private static final Random RN = new Random();
-
     /**
      * Метод реализаущий добавление заявки в хранилище
      *
@@ -28,24 +26,24 @@ public class Tracker {
         this.items[this.position++] = item;
         return item;
     }
-
     /**
      * Метод заменяет ячейку в массиве items
      *
      * @param id   идентификатор заявки
      * @param item заявка
      */
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if ((this.items[i] != null) && (this.items[i].getId().equals(id))) {
                 item.setId(id);
                 this.items[i] = item;
+                result = true;
                 break;
             }
-
         }
+        return result;
     }
-
     /**
      * Метод сравнивает параметр name в массиве с параметром key и записывает результат в новый массив
      *
@@ -53,7 +51,7 @@ public class Tracker {
      * @return массив result.
      */
     public Item[] findByName(String key) {
-        Item[] result = new Item[position];
+        Item[] result = new Item[this.position];
         int j = 0;
         for (int i = 0; i != this.position; i++) {
             if (this.items[i].getName().equals(key)) {
@@ -61,22 +59,25 @@ public class Tracker {
                 j++;
             }
         }
-        return result;
+        return Arrays.copyOf(result, j);
     }
     /**
      * Метод удаляет элемент массивы с нужным id и сдвигает эллементы справа от него на одну ячейку влево
      *
      * @param id идентификатор заявки
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if ((this.items[i] != null) && (this.items[i].getId().equals(id))) {
                 System.arraycopy(this.items, i + 1, this.items, i, this.position - i);
                 this.position--;
+                result = true;
+                break;
             }
         }
+        return result;
     }
-
     /**
      * Метод реализует поиск заявки по id
      *
@@ -93,23 +94,16 @@ public class Tracker {
         }
         return result;
     }
-
     /**
      * Метод возвращает копию массива items без null элементов
      *
      * @return result новый массив без null элементов
      */
     public Item[] findAll() {
-        Item[] result = new Item[position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
-
     /**
      * Метод генерирует уникальный ключ для заявки.
-     * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      *
      * @return Уникальный ключ.
      */
