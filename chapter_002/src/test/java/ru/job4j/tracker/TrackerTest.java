@@ -9,9 +9,9 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item("test1", "testDescription");//, 123L);
+        Item item = new Item("test1", "testDescription");
         tracker.add(item);
-        Item item1 = new Item("test1", "testDescription");//, 123L);
+        Item item1 = new Item("test1", "testDescription");
         tracker.add(item1);
         assertThat(tracker.findAll()[0], is(item));
         assertThat(tracker.findAll()[1], is(item1));
@@ -20,11 +20,11 @@ public class TrackerTest {
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "testDescription");//, 123L);
+        Item item1 = new Item("test1", "testDescription");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(item1);
         // Создаем новую заявку.
-        Item item2 = new Item("test2", "testDescription2");//, 1234L);
+        Item item2 = new Item("test2", "testDescription2");
         // Проставляем старый id из item1, который был сгенерирован выше.
         item2.setId(item1.getId());
         assertThat(tracker.replace(item1.getId(), item2), is(true));
@@ -35,13 +35,13 @@ public class TrackerTest {
     @Test
     public void deleteItemTwoThenCellShift() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "testDescription");//, 123L);
+        Item item1 = new Item("test1", "testDescription");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(item1);
         // Создаем новую заявку.
-        Item item2 = new Item("test2", "testDescription2");//, 1234L);
+        Item item2 = new Item("test2", "testDescription2");
         tracker.add(item2);
-        Item item3 = new Item("test3", "testDescription3");//, 12345L);
+        Item item3 = new Item("test3", "testDescription3");
         tracker.add(item3);
         assertThat(tracker.delete(item2.getId()), is(true));
         assertThat(tracker.findAll()[1], is(item3));
@@ -50,15 +50,15 @@ public class TrackerTest {
     @Test
     public void whenFindByNameThenReturnNewArryWhisName() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "testDescription");//, 123L);
+        Item item1 = new Item("test1", "testDescription");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(item1);
         // Создаем новую заявку.
-        Item item2 = new Item("test3", "testDescription2");//, 1234L);
+        Item item2 = new Item("test3", "testDescription2");
         tracker.add(item2);
-        Item item3 = new Item("test1", "testDescription3");//, 12345L);
+        Item item3 = new Item("test1", "testDescription3");
         tracker.add(item3);
-        Item item4 = new Item("test1", "testDescription3");//, 12345L);
+        Item item4 = new Item("test1", "testDescription3");
         tracker.add(item4);
         assertThat(tracker.findByName("test1")[0], is(item1));
         assertThat(tracker.findByName("test1")[1], is(item3));

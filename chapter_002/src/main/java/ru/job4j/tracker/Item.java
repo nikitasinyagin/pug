@@ -7,7 +7,7 @@ public class Item {
     public String description;
     public Long create;
 
-    public Item(String name, String description){
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
         this.create = System.currentTimeMillis();
@@ -24,7 +24,7 @@ public class Item {
     public void setId(String id) {
         this.id = id;
     }
-    public Long getCreate(){
+    public Long getCreate() {
         return this.create;
     }
 }
