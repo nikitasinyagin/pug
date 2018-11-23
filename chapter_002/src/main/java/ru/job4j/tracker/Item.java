@@ -27,4 +27,10 @@ public class Item {
     public Long getCreate() {
         return this.create;
     }
+    @Override
+    public String toString() {
+        return "ID заявки: " + this.getId()
+                + "\nИмя заявки: " + this.getName()
+                + "\nОписание заявки: " + this.getDescription() + "\n---";
+    }
 }
