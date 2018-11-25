@@ -45,4 +45,33 @@ public class StartUITest {
         assertThat(tracker.findAll()[0], is(item2));
         assertThat(tracker.findAll()[1], is(item3));
     }
+
+    @Test
+    public void whenFindByIdThenItemTwo() {
+        // создаём Tracker
+        Tracker tracker = new Tracker();
+        //Напрямую добавляем три заявки
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test name two", "desc2"));
+        Item item3 = tracker.add(new Item("test name three", "desc3"));
+        //создаём StubInput с последовательностью действий(найти заявку по ID)
+        Input input = new StubInput(new String[]{"4", item2.getId(), "6"});
+        new StartUI(input, tracker).init();
+        // проверяем, что заявка с таким ID - это вторая завка.
+        assertThat(tracker.findById(item2.getId()), is(item2));
+    }
+    @Test
+    public void whenFindByIdThenItemNull() {
+        Tracker tracker = new Tracker();
+        //Напрямую добавляем три заявки
+        Item item = null;
+        Item item2 = tracker.add(new Item("test name two", "desc2"));
+        Item item3 = tracker.add(new Item("test name three", "desc3"));
+        //создаём StubInput с последовательностью действий(найти заявку по ID)
+        Input input = new StubInput(new String[]{"4", "12345678", "6"});
+        new StartUI(input, tracker).init();
+        // проверяем, что заявка с таким ID не существует.
+        assertThat(tracker.findById("12345678"), is(item));
+
+    }
 }
