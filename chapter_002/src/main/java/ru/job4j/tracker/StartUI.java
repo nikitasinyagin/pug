@@ -75,9 +75,8 @@ public class StartUI {
                 System.out.println(item.toString());
             }
         } else {
-            System.out.println("Заявок еще нет");
+            System.out.println("Заявок еще нет" + "\n---");
         }
-        System.out.println("-----------------------------------------------");
     }
     /**
      * Метод для изменения заявки
