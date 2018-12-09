@@ -119,7 +119,7 @@ public class StartUITest {
                         .append("------------ Показать все заявки --------------").append(ls)
                         .append(item.toString()).append(ls)
                         .append(this.menu)
-                        .append("Выход из программы.").append(ls)
+                        .append("Закрытие программы.").append(ls)
                         .toString()
                 )
         );
@@ -147,7 +147,7 @@ public class StartUITest {
                         .append(item2.getDescription())
                         .append("\n---").append(ls)
                         .append(this.menu)
-                        .append("Выход из программы.").append(ls)
+                        .append("Закрытие программы.").append(ls)
                         .toString()
                 )
         );
