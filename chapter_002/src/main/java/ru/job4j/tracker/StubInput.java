@@ -28,6 +28,18 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, List<Integer> range) {
-        return Integer.valueOf(this.value[this.position++]);
+        int key = Integer.valueOf(this.value[this.position++]);
+        boolean exit = false;
+        for (int value : range) {
+            if (value == key) {
+                exit = true;
+                break;
+            }
+        }
+        if (exit) {
+            return key;
+        } else {
+            throw new MenuOutException("Значение не входит в указанный диапазон");
+        }
    }
 }

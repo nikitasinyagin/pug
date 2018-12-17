@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.is;
 public class ValidateInputTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
+    private final List<Integer> list = Arrays.asList(1, 2, 3);
 
     @Before
     public void loadMem() {
@@ -27,15 +28,15 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
-        ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"invalid", "1"})
-        );
-        input.ask("Enter", new ArrayList<Integer>(1));
-        assertThat(
-                this.mem.toString(),
-                is(
-                        String.format("Введите корректные данные.%n")
-                )
-        );
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "1"}));
+        input.ask("Введите значение",list);
+        assertThat(this.mem.toString(), is(String.format("Введите корректные данные.%n")));
+    }
+
+    @Test
+    public void whenOutOfRange() {
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"-1", "1"}));
+        input.ask("Enter", list);
+        assertThat(this.mem.toString(), is(String.format("Введите значение из диапазона меню.%n")));
     }
 }
