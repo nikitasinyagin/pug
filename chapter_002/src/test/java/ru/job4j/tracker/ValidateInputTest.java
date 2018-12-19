@@ -29,7 +29,7 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "1"}));
-        input.ask("Введите значение",list);
+        input.ask("Введите значение", list);
         assertThat(this.mem.toString(), is(String.format("Введите корректные данные.%n")));
     }
 

@@ -36,10 +36,9 @@ public class StubInput implements Input {
                 break;
             }
         }
-        if (exit) {
-            return key;
-        } else {
+        if (!exit) {
             throw new MenuOutException("Значение не входит в указанный диапазон");
         }
-   }
+        return key;
+    }
 }
