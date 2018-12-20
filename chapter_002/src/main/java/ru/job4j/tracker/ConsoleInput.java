@@ -21,7 +21,7 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (exit) {
+        if (!exit) {
             throw new MenuOutException("Значение не входит в указанный диапазон");
         }
         return key;
